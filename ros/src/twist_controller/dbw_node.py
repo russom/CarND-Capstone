@@ -75,6 +75,8 @@ class DBWNode(object):
         self.dbw_enabled = None
         self.linear_vel = None
         self.angular_vel = None
+        
+        rospy.logwarn("DBW Enabled :{0}".format(self.dbw_enabled))
 
         self.throttle = 0
         self.steering = 0
@@ -86,23 +88,25 @@ class DBWNode(object):
         rate = rospy.Rate(50) # 50Hz
         while not rospy.is_shutdown():
             # You should only publish the control commands if dbw is enabled
-            if not None in (self.current_vel, self.linear_vel, self.angular_vel):
+            if not None in (self.current_vel, self.linear_vel, self.angular_vel, self.dbw_enabled):
                 self.throttle, self.brake, self.steering = self.controller.control(self.linear_vel,
                                                                                    self.angular_vel,
                                                                                    self.current_vel,
                                                                                    self.dbw_enabled)
 
-            if self.dbw_enabled:
-              self.publish(self.throttle, self.brake, self.steering)
+                if self.dbw_enabled:
+                    self.publish(self.throttle, self.brake, self.steering)
             rate.sleep()
 
     def dbw_enabled_cb(self, msg):
+        #rospy.logwarn("DBW Enabled msg :{0}".format(msg))
         self.dbw_enabled = msg
+        #rospy.logwarn("DBW Enabled :{0}".format(self.dbw_enabled))
 
     def twist_cb(self, msg):
         self.linear_vel = msg.twist.linear.x
         self.angular_vel = msg.twist.angular.z
-
+        
     def velocity_cb(self, msg):
         self.current_vel = msg.twist.linear.x
 
@@ -111,17 +115,20 @@ class DBWNode(object):
         tcmd.enable = True
         tcmd.pedal_cmd_type = ThrottleCmd.CMD_PERCENT
         tcmd.pedal_cmd = throttle
+        #rospy.logwarn("Publishing throttle :{0}".format(throttle))
         self.throttle_pub.publish(tcmd)
 
         scmd = SteeringCmd()
         scmd.enable = True
         scmd.steering_wheel_angle_cmd = steer
+        #rospy.logwarn("Publishing steering :{0}".format(steer))
         self.steer_pub.publish(scmd)
 
         bcmd = BrakeCmd()
         bcmd.enable = True
         bcmd.pedal_cmd_type = BrakeCmd.CMD_TORQUE
         bcmd.pedal_cmd = brake
+        #rospy.logwarn("Publishing brake :{0}".format(brake))
         self.brake_pub.publish(bcmd)
 
 
