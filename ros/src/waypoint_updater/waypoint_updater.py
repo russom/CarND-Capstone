@@ -48,7 +48,7 @@ class WaypointUpdater(object):
         self.loop()
 
     def loop(self):
-        rate = rospy.Rate(50)
+        rate = rospy.Rate(20)
         while not rospy.is_shutdown():
             if self.pose and self.base_waypoints:
                 #Get closest waypoints
@@ -93,13 +93,19 @@ class WaypointUpdater(object):
         base_waypoints = self.base_waypoints.waypoints[closest_idx:farthest_idx]
 
         if self.stopline_wp_idx == -1 or (self.stopline_wp_idx >= farthest_idx):
+            # rospy.logwarn("Closest waypoynt idx :{0}".format(closest_idx))
+            # rospy.logwarn("Farthest waypoynt idx :{0}".format(farthest_idx))
+            # rospy.logwarn("Normal lane generated")
             lane.waypoints = base_waypoints
         else:
+            # rospy.logwarn("Closest waypoynt idx :{0}".format(closest_idx))
+            # rospy.logwarn("Farthest waypoynt idx :{0}".format(farthest_idx))
+            # rospy.logwarn("Decelerating lane generated")
             lane.waypoints = self.decelerate_waypoints(base_waypoints, closest_idx)
 
         return lane
 
-    def decelerate_waypoynts(self, waypoints, closest_idx):
+    def decelerate_waypoints(self, waypoints, closest_idx):
         temp = []
 
         for i, wp in enumerate(waypoints):
@@ -129,6 +135,7 @@ class WaypointUpdater(object):
             self.waypoints_tree = KDTree(self.waypoints_2d)
 
     def traffic_cb(self, msg):
+        # rospy.logwarn("subscribing stopline_wp_idx :{0}".format(msg.data))
         self.stopline_wp_idx = msg.data
 
     def obstacle_cb(self, msg):

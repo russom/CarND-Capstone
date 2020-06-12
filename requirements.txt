@@ -4,8 +4,9 @@ gevent-websocket==0.10.1
 h5py==2.6.0
 python-socketio==4.4.0
 numpy==1.16.0
-Pillow==6.2.0
+Pillow==6.2.2
 scipy==1.2.2
+six>=1.12.0
 keras==2.0.8
 tensorflow>=1.15.2
 ujson==1.35

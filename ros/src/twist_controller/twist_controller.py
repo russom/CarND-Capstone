@@ -52,10 +52,10 @@ class Controller(object):
 
         # Return throttle, brake, steer
 
-        #rospy.logwarn("DBW enabled :{0}".format(dbw_enabled))
-        #rospy.logwarn("Angular velocity :{0}".format(angular_vel))
-        #rospy.logwarn("Target velocity :{0}".format(linear_vel))
-        #rospy.logwarn("Current velocity :{0}".format(current_vel))
+        # rospy.logwarn("DBW enabled :{0}".format(dbw_enabled))
+        # rospy.logwarn("Angular velocity :{0}".format(angular_vel))
+        # rospy.logwarn("Target velocity :{0}".format(linear_vel))
+        # rospy.logwarn("Current velocity :{0}".format(current_vel))
         
         # In case of drive-bt-wire NOT enabled, reset PID and return 0
         if not dbw_enabled:
@@ -94,11 +94,8 @@ class Controller(object):
             decel = max(vel_error, self.decel_limit)
             brake = abs(decel)*self.vehicle_mass*self.wheel_radius
 
-        # throttle = 1.0
-        # rospy.logwarn("FORCED throttle :{0}".format(throttle))
-        # brake = 0.0
-        # rospy.logwarn("FORCED brake :{0}".format(brake))
-        # steering = 0.0
-        # rospy.logwarn("FORCED steering :{0}".format(steering))
+        #rospy.logwarn("Throttle :{0}".format(throttle))
+        #rospy.logwarn("Brake :{0}".format(brake))
+        #rospy.logwarn("Steering :{0}".format(steering))
         
         return throttle, brake, steering
