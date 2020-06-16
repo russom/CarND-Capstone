@@ -23,8 +23,8 @@ as well as to verify your TL classifier.
 TODO (for Yousuf and Aaron): Stopline location for each traffic light.
 '''
 
-LOOKAHEAD_WPS = 200 # Number of waypoints we will publish. You can change this number
-MAX_DECEL = 0.5     # Max deceleration for slowing at traffic lights
+LOOKAHEAD_WPS = 100 # Number of waypoints we will publish. You can change this number
+MAX_DECEL = 0.05     # Max deceleration for slowing at traffic lights
 
 class WaypointUpdater(object):
     def __init__(self):
@@ -48,7 +48,7 @@ class WaypointUpdater(object):
         self.loop()
 
     def loop(self):
-        rate = rospy.Rate(20)
+        rate = rospy.Rate(50)
         while not rospy.is_shutdown():
             if self.pose and self.base_waypoints:
                 #Get closest waypoints
@@ -93,14 +93,14 @@ class WaypointUpdater(object):
         base_waypoints = self.base_waypoints.waypoints[closest_idx:farthest_idx]
 
         if self.stopline_wp_idx == -1 or (self.stopline_wp_idx >= farthest_idx):
-            # rospy.logwarn("Closest waypoynt idx :{0}".format(closest_idx))
-            # rospy.logwarn("Farthest waypoynt idx :{0}".format(farthest_idx))
-            # rospy.logwarn("Normal lane generated")
+            # rospy.loginfo("Closest waypoynt idx :{0}".format(closest_idx))
+            # rospy.loginfo("Farthest waypoynt idx :{0}".format(farthest_idx))
+            # rospy.loginfo("Normal lane generated")
             lane.waypoints = base_waypoints
         else:
-            # rospy.logwarn("Closest waypoynt idx :{0}".format(closest_idx))
-            # rospy.logwarn("Farthest waypoynt idx :{0}".format(farthest_idx))
-            # rospy.logwarn("Decelerating lane generated")
+            # rospy.loginfo("Closest waypoynt idx :{0}".format(closest_idx))
+            # rospy.loginfo("Farthest waypoynt idx :{0}".format(farthest_idx))
+            # rospy.loginfo("Decelerating lane generated")
             lane.waypoints = self.decelerate_waypoints(base_waypoints, closest_idx)
 
         return lane
@@ -108,12 +108,13 @@ class WaypointUpdater(object):
     def decelerate_waypoints(self, waypoints, closest_idx):
         temp = []
 
+        # rospy.loginfo("Length base wp :{0}".format(len(waypoints)))
+        stop_idx = max(self.stopline_wp_idx - closest_idx - 2, 0)
+
         for i, wp in enumerate(waypoints):
 
             p = Waypoint()
             p.pose = wp.pose
-
-            stop_idx = max(self.stopline_wp_idx - closest_idx - 2, 0)
             dist = self.distance(waypoints, i, stop_idx)
             vel = math.sqrt(2 * MAX_DECEL * dist)
 
@@ -135,7 +136,7 @@ class WaypointUpdater(object):
             self.waypoints_tree = KDTree(self.waypoints_2d)
 
     def traffic_cb(self, msg):
-        # rospy.logwarn("subscribing stopline_wp_idx :{0}".format(msg.data))
+        rospy.loginfo("subscribing stopline_wp_idx :{0}".format(msg.data))
         self.stopline_wp_idx = msg.data
 
     def obstacle_cb(self, msg):

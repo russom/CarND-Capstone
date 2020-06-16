@@ -64,7 +64,7 @@ class TLDetector(object):
             self.waypoints_tree = KDTree(self.waypoints_2d)
 
     def traffic_cb(self, msg):
-        #rospy.logwarn("Traffic lights array callback")
+        #rospy.loginfo("Traffic lights array callback")
         self.lights = msg.lights
 
     def image_cb(self, msg):
@@ -75,12 +75,12 @@ class TLDetector(object):
             msg (Image): image from car-mounted camera
 
         """
-        rospy.logwarn("================ Image cb - image received =========================")
+        rospy.loginfo("================ Image cb - image received =========================")
         self.has_image = True
         self.camera_image = msg
         light_wp, state = self.process_traffic_lights()
-        rospy.logwarn("light_wp :{0}".format(light_wp))
-        rospy.logwarn("state :{0}".format(state))
+        rospy.loginfo("light_wp :{0}".format(light_wp))
+        rospy.loginfo("state :{0}".format(state))
 
 
         '''
@@ -89,7 +89,7 @@ class TLDetector(object):
         of times till we start using it. Otherwise the previous stable state is
         used.
         '''
-        rospy.logwarn("State count :{0}".format(self.state_count))
+        rospy.loginfo("State count :{0}".format(self.state_count))
         if self.state != state:
             self.state_count = 0
             self.state = state
@@ -97,10 +97,10 @@ class TLDetector(object):
             self.last_state = self.state
             light_wp = light_wp if state == TrafficLight.RED else -1
             self.last_wp = light_wp
-            # rospy.logwarn("Publishing light_wp :{0}".format(light_wp))
+            # rospy.loginfo("Publishing light_wp :{0}".format(light_wp))
             self.upcoming_red_light_pub.publish(Int32(light_wp))
         else:
-            # rospy.logwarn("Publishing last_wp :{0}".format(self.last_wp))
+            # rospy.loginfo("Publishing last_wp :{0}".format(self.last_wp))
             self.upcoming_red_light_pub.publish(Int32(self.last_wp))
         self.state_count += 1
 
@@ -149,7 +149,7 @@ class TLDetector(object):
             int: ID of traffic light color (specified in styx_msgs/TrafficLight)
 
         """
-        rospy.logwarn("Processing traffic lights")
+        rospy.loginfo("Processing traffic lights")
         closest_light = None
         line_wp_idx = None
 
@@ -160,10 +160,11 @@ class TLDetector(object):
         if(self.pose):
             # Get closest waypoints
             car_wp_idx = self.get_closest_waypoint(self.pose.pose.position.x, self.pose.pose.position.y)
+            rospy.loginfo("Car_wp_idx: {0}".format(car_wp_idx))
 
             # Find closest traffic lights (if one exists)
             diff = len(self.waypoints.waypoints)
-            # rospy.logwarn("Length waypoynts: {0}".format(diff))
+            # rospy.loginfo("Length waypoynts: {0}".format(diff))
             for i, light in enumerate (self.lights):
                 # Get stop line wp index
                 line = stop_line_positions[i]
@@ -171,21 +172,23 @@ class TLDetector(object):
                 # Find closest wp
                 d = tmp_wp_idx - car_wp_idx
                 if ((d >= 0) and (d < diff)):
+                    rospy.loginfo("Length waypoynts: {0}".format(diff))
+                    rospy.loginfo("Distance stop line: {0}".format(d))
                     diff = d
                     closest_light = light
                     line_wp_idx = tmp_wp_idx
 
         if closest_light:
-            rospy.logwarn("Found close light")
-            # rospy.logwarn("Line_wp_idx: {0}".format(line_wp_idx))
+            rospy.loginfo("Found close light")
+            rospy.loginfo("Line_wp_idx: {0}".format(line_wp_idx))
             state = self.get_light_state(closest_light)
 
             if state == TrafficLight.RED:
-                rospy.logwarn("Closest light is RED")
+                rospy.loginfo("Closest light is RED")
             elif state == TrafficLight.GREEN:
-                rospy.logwarn("Closest light is GREEN")
+                rospy.loginfo("Closest light is GREEN")
             elif state == TrafficLight.YELLOW:
-                rospy.logwarn("Closest light is YELLOW")
+                rospy.loginfo("Closest light is YELLOW")
 
             return line_wp_idx, state
 

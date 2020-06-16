@@ -20,9 +20,9 @@ class Controller(object):
         ki = 0.1
         kd = 0.0
         
-        rospy.logwarn("PID Kp :{0}".format(kp))
-        rospy.logwarn("PID Ki :{0}".format(ki))
-        rospy.logwarn("PID Kd :{0}".format(kd))
+        # rospy.loginfo("PID Kp :{0}".format(kp))
+        # rospy.loginfo("PID Ki :{0}".format(ki))
+        # rospy.loginfo("PID Kd :{0}".format(kd))
 
         mn = 0.0  # Min throttle
         mx = 0.2  # Max throttle
@@ -33,8 +33,8 @@ class Controller(object):
         tau = 0.5  # Time constant
         ts = 0.02  # Sampling time
         
-        rospy.logwarn("Low pass filter Time constant :{0}".format(tau))
-        rospy.logwarn("Low pass filter Sampling time :{0}".format(ts))
+        # rospy.loginfo("Low pass filter Time constant :{0}".format(tau))
+        # rospy.loginfo("Low pass filter Sampling time :{0}".format(ts))
 
         self.vel_lpf = LowPassFilter(tau, ts)
 
@@ -52,10 +52,10 @@ class Controller(object):
 
         # Return throttle, brake, steer
 
-        # rospy.logwarn("DBW enabled :{0}".format(dbw_enabled))
-        # rospy.logwarn("Angular velocity :{0}".format(angular_vel))
-        # rospy.logwarn("Target velocity :{0}".format(linear_vel))
-        # rospy.logwarn("Current velocity :{0}".format(current_vel))
+        # rospy.loginfo("DBW enabled :{0}".format(dbw_enabled))
+        # rospy.loginfo("Angular velocity :{0}".format(angular_vel))
+        # rospy.loginfo("Target velocity :{0}".format(linear_vel))
+        # rospy.loginfo("Current velocity :{0}".format(current_vel))
         
         # In case of drive-bt-wire NOT enabled, reset PID and return 0
         if not dbw_enabled:
@@ -65,7 +65,7 @@ class Controller(object):
         # Otherwise, first filter velocity
         current_vel = self.vel_lpf.filt(current_vel)
        
-        #rospy.logwarn("Current velocity (filtered) :{0}".format(current_vel))
+        #rospy.loginfo("Current velocity (filtered) :{0}".format(current_vel))
 
         # Calculate steering
         steering = self.yaw_controller.get_steering(linear_vel, angular_vel, current_vel)
@@ -94,8 +94,8 @@ class Controller(object):
             decel = max(vel_error, self.decel_limit)
             brake = abs(decel)*self.vehicle_mass*self.wheel_radius
 
-        #rospy.logwarn("Throttle :{0}".format(throttle))
-        #rospy.logwarn("Brake :{0}".format(brake))
-        #rospy.logwarn("Steering :{0}".format(steering))
+        #rospy.loginfo("Throttle :{0}".format(throttle))
+        #rospy.loginfo("Brake :{0}".format(brake))
+        #rospy.loginfo("Steering :{0}".format(steering))
         
         return throttle, brake, steering

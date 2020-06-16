@@ -75,8 +75,6 @@ class DBWNode(object):
         self.dbw_enabled = None
         self.linear_vel = None
         self.angular_vel = None
-        
-        rospy.logwarn("DBW Enabled :{0}".format(self.dbw_enabled))
 
         self.throttle = 0
         self.steering = 0
@@ -99,9 +97,7 @@ class DBWNode(object):
             rate.sleep()
 
     def dbw_enabled_cb(self, msg):
-        #rospy.logwarn("DBW Enabled msg :{0}".format(msg))
         self.dbw_enabled = msg
-        #rospy.logwarn("DBW Enabled :{0}".format(self.dbw_enabled))
 
     def twist_cb(self, msg):
         self.linear_vel = msg.twist.linear.x
