@@ -30,3 +30,9 @@ This package contains the traffic light detection node: [`tl_detector.py`](./ros
 ## Details of the Packages
 
 Most of the modifications made to the packages have been driven by the information provided in the Project's classroom. In the following paragraph for each of them these references will be provided, together with details on any specific adptation/modification or feature development.
+
+### _Waypoint Updater_
+
+### _Twist Controller_
+
+### _Traffic Lights Detector_
