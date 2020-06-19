@@ -20,20 +20,20 @@ sudo chmod u+x {simulator_file_name}
 
 In terms of other depednencies, they would depend on the kind of installation selected. There are, in fact, two options to run the code: through a native installation on a Linux environment or using a Docker container.
 
-Please use **one** of the two installation options, either native **or** docker installation. Consider that most of the testing done for the code happened with th **Docker** installation.
+Please use **one** of the two installation options, either native **or** Docker installation. Consider that most of the testing done for the code happened with th **Docker** installation.
 
 **NOTE** on websocket set up: For both installations you might have to set up and install [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) for either Linux or Mac systems. For this you can use the scripts and follow the instructions provided in previous projects (like the [Path Planning](https://github.com/russom/CarND-P7-Path-Planning) one. 
 
 ### _Docker Installation_
 
 1. [Install Docker](https://docs.docker.com/engine/installation/)
-2. From the root folder of this repo, build the docker container
+2. From the root folder of this repo, build the Docker container
 
 ```bash
    docker build . -t capstone
 ```
 
-3. From the same place, run the docker file
+3. From the same place, run the Docker file
 
 ```bash
    docker run -p 4567:4567 -v $PWD:/capstone -v /tmp/log:/root/.ros/ --rm -it capstone
