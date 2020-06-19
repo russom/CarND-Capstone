@@ -15,7 +15,12 @@ First of all, the following picture shows a system architecture diagram detailin
 ## Code Structure
 The code for the project is contained entirely within the [`/ros/src/`](./ros/src) directory. Within this directory, you will find the following ROS packages, that have been modified:
 
-### [`/ros/src/tl_detector/`](./ros/src/tl_detector)
+#### [`/ros/src/tl_detector/`](./ros/src/tl_detector)
 This package contains the traffic light detection node: [`tl_detector.py`](./ros/src/tl_detector/tl_detector.py). This node takes in data from the `/image_color`, `/current_pose`, and `/base_waypoints` topics and publishes the locations to stop for red traffic lights to the /traffic_waypoint topic.
 
 The `/current_pose` topic provides the vehicle's current position, and `/base_waypoints` provides a complete list of waypoints the car will be following.
+
+
+#### [`/ros/src/waypoint_updater/`](./ros/src/waypoint_updater)
+This package contains the waypoint updater node: [`waypoint_updater.py`](./ros/src/waypoynt_updater.py). The purpose of this node is to update the target velocity property of each waypoint based on traffic light and (eventually) obstacle data. This node will subscribe to the `/base_waypoints`, `/current_pose`, `/obstacle_waypoint`, and `/traffic_waypoint` topics, and publish a list of waypoints ahead of the car with target velocities to the `/final_waypoints` topic.
+
