@@ -22,6 +22,8 @@ In terms of other depednencies, they would depend on the kind of installation se
 
 Please use **one** of the two installation options, either native **or** docker installation. Consider that most of the testing done for the code happened with th **Docker** installation.
 
+**NOTE** on websocket set up: For both installations you might have to set up and install [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) for either Linux or Mac systems. For this you can use the scripts and follow the instructions provided in previous projects (like the [Path Planning](https://github.com/russom/CarND-P7-Path-Planning) one. 
+
 ### _Docker Installation_
 
 1. [Install Docker](https://docs.docker.com/engine/installation/)
@@ -37,7 +39,11 @@ Please use **one** of the two installation options, either native **or** docker 
    docker run -p 4567:4567 -v $PWD:/capstone -v /tmp/log:/root/.ros/ --rm -it capstone
 ```
 
-**NOTE** on websocket set up: For this installation you might have to set up and install [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) for either Linux or Mac systems. For this you can use the scripts and follow the instructions provided in previous projects (like the [Path Planning](https://github.com/russom/CarND-P7-Path-Planning) one. 
+After the last command the system will prompt you in the running container:
+
+```
+   root@0410f09901dc:/capstone/ros#
+```
 
 ### _Native Installation_
 
@@ -47,7 +53,7 @@ Please use **one** of the two installation options, either native **or** docker 
   * 2 GB system memory
   * 25 GB of free hard drive space
 
-  The Udacity provided virtual machine has ROS and Dataspeed DBW already installed, so you can skip the next two steps if you are using this.
+The Udacity provided virtual machine has ROS and Dataspeed DBW already installed, so you can skip the next two steps if you are using this.
 
 * Follow these instructions to install ROS
   * [ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu) if you have Ubuntu 16.04.
@@ -55,7 +61,12 @@ Please use **one** of the two installation options, either native **or** docker 
 * [Dataspeed DBW](https://bitbucket.org/DataspeedInc/dbw_mkz_ros)
   * Use this option to install the SDK on a workstation that already has ROS installed: [One Line SDK Install (binary)](https://bitbucket.org/DataspeedInc/dbw_mkz_ros/src/81e63fcc335d7b64139d7482017d6a97b405e250/ROS_SETUP.md?fileviewer=file-view-default)
   
+Finally, after having cloned the project repo, you would have to install the python dependencies defined in [`requirements.txt`](./requirements.txt):
 
+```bash
+  cd CarND-Capstone
+  pip install -r requirements.txt
+```
 
 
 ---
@@ -69,10 +80,7 @@ Please use **one** of the two installation options, either native **or** docker 
 git clone https://github.com/udacity/CarND-Capstone.git
 ```
 
-2. Install python dependencies
-```bash
-cd CarND-Capstone
-pip install -r requirements.txt
+
 ```
 3. Make and run styx
 ```bash
