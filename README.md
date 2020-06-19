@@ -22,7 +22,7 @@ In terms of other depednencies, they would depend on the kind of installation se
 
 Please use **one** of the two installation options, either native **or** docker installation.
 
-### Docker Installation
+### _Docker Installation_
 
 1. [Install Docker](https://docs.docker.com/engine/installation/)
 2. From the root folder of this repo, build the docker container
@@ -37,9 +37,9 @@ Please use **one** of the two installation options, either native **or** docker 
    docker run -p 4567:4567 -v $PWD:/capstone -v /tmp/log:/root/.ros/ --rm -it capstone
 ```
 
-**NOTE** on websocket set up: For this installation you might have to set up and install [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) for either Linux or Mac systems. For this you can use the scripts and follow the instructions provided in other similar projects (like the [Path Planning](https://github.com/russom/CarND-P7-Path-Planning) one. 
+**NOTE** on websocket set up: For this installation you might have to set up and install [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) for either Linux or Mac systems. For this you can use the scripts and follow the instructions provided in previous projects (like the [Path Planning](https://github.com/russom/CarND-P7-Path-Planning) one. 
 
-### Native Installation
+### _Native Installation_
 
 * Be sure that your workstation is running Ubuntu 16.04 Xenial Xerus or Ubuntu 14.04 Trusty Tahir. [Ubuntu downloads can be found here](https://www.ubuntu.com/download/desktop).
 * If using a Virtual Machine to install Ubuntu, use the following configuration as minimum:
