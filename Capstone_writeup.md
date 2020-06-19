@@ -9,5 +9,5 @@ First of all, the following picture shows a system architecture diagram detailin
 
 
 <p align="center">
-  <img width="460" height="300" src="./imgs/SystemArch.png">
+  <src="./imgs/SystemArch.png">
 </p>
