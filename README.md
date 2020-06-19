@@ -39,10 +39,10 @@ Please use **one** of the two installation options, either native **or** docker 
    docker run -p 4567:4567 -v $PWD:/capstone -v /tmp/log:/root/.ros/ --rm -it capstone
 ```
 
-After the last command the system will prompt you in the running container:
+After the last command the system will prompt you in the running container, showing you something like this:
 
 ```
-   root@0410f09901dc:/capstone/ros#
+   root@xxxxxxxxxxxx:/capstone/ros#
 ```
 
 ### _Native Installation_
@@ -68,6 +68,20 @@ Finally, after having cloned the project repo, you would have to install the pyt
   pip install -r requirements.txt
 ```
 
+Running the code
+---
+
+Whether you are using the Docker or native installation, you can run the code issuing the same commands. In case of native installation, however, first of all you will have to move to the `ros` folder (are see before the Docker one prompts you there directly). 
+
+Then, in both cases, type:
+
+```bash
+   catkin_make
+   source devel/setup.sh
+   roslaunch launch/styx.launch
+```
+
+After that you can start the simulator.
 
 ---
 
