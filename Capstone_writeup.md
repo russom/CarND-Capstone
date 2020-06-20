@@ -32,7 +32,10 @@ This package contains the traffic light detection node: [`tl_detector.py`](./ros
 Most of the modifications made to the packages have been driven by the information provided in the Project's classroom. In the following paragraph for each of them these references will be provided, together with details on any specific adptation/modification or feature development.
 
 ### _Waypoint Updater_
+Content from Uacity's callsroom [here](https://www.youtube.com/watch?time_continue=1&v=6GIFyUzhaQo&feature=emb_logo) and [here](https://www.youtube.com/watch?v=2tDrj8KjIL4&feature=emb_logo).
 
 ### _Twist Controller_
+Content from Uacity's callsroom [here](https://www.youtube.com/watch?v=kdfXo6atphY&feature=emb_logo)
 
 ### _Traffic Lights Detector_
+Content from Uacity's callsroom [here](https://www.youtube.com/watch?v=oTfArPhstQU&feature=emb_logo)
