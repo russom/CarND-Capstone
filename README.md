@@ -83,6 +83,13 @@ Then, in both cases, type:
 
 After that you can start the simulator.
 
+**NOTE**: In some cases it might be desirable to be sure that the SW running is coming from a "clean: build. To achieve that, it's needed to delete the `ros/build` and `ros/devel` folders that are generate by the `catkin_make` command. In order to simplify that process I have added to the `ros` folder a [`clean_build.sh`](./ros/clean_build.sh) script that does just that and then builds and sources the code. To use it and then run the code, from the `ros` folder just type:
+
+```bash
+   source clean_build.sh
+   roslaunch launch/styx.launch
+```
+
 ---
 
 
