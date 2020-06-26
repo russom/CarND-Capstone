@@ -22,7 +22,9 @@ In terms of other depednencies, they would depend on the kind of installation se
 
 Please use **one** of the two installation options, either native **or** Docker installation. Consider that most of the testing done for the code happened with th **Docker** installation.
 
-**NOTE** on websocket set up: For both installations you might have to set up and install [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) for either Linux or Mac systems. For this you can use the scripts and follow the instructions provided in previous projects (like the [Path Planning](https://github.com/russom/CarND-P7-Path-Planning) one. 
+**NOTE** on websocket set up: 
+
+For both installations you might have to set up and install [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) for either Linux or Mac systems. For this you can use the scripts and follow the instructions provided in previous projects (like the [Path Planning](https://github.com/russom/CarND-P7-Path-Planning) one. 
 
 ### _Docker Installation_
 
@@ -56,7 +58,7 @@ The first run of the `docker build` command after cloning the original Udacity r
    The command '/bin/sh -c pip install -r requirements.txt' returned a non-zero code: 1
 ```
 
-To resolve it, I updated the [`dockerfile`](./dockerfile) as explained in the message itself.
+To resolve it, I updated the [`dockerfile`](./Dockerfile) as explained in the message itself.
 
 ### _Native Installation_
 
