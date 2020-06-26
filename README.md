@@ -109,9 +109,9 @@ The original `requirements.txt` file as found in the original Udacity repo lists
    2020-06-23T17:10:31Z <Thread at 0x7f63002d0890: <bound method Server._handle_event_internal of <socketio.server.Server object at 0x7f63224e9f10>>(<socketio.server.Server object at 0x7f63224e9f10>, '1d195dbc19384fa6b14ac8c5e608525b', [u'image', {u'image': u'/9j/4AAQSkZJRgABAQAAAQABAA, '/', None)> failed with IndexError
 ```
 
-Based on the experience from [another student](https://github.com/Horki/CarND-Capstone) this also seemed to be due to the version of one of the libraries (Pillow).
+Based on the experience from [another student](https://github.com/Horki/CarND-Capstone) this also seemed to be due to the version of one of the libraries (`Pillow`).
 
-As a consequence of both points, I have updated [`requirements.txt`](./requirements.txt) to load newer versions of all the libraries. **HOWEVER** I have taken care of testing the code against the original libraries, **except** pillow. The libraries are still listed in the file if needed, they're just commented out. 
+As a consequence of both points, I have updated [`requirements.txt`](./requirements.txt) to load newer versions of all the libraries. **HOWEVER** I have taken care of testing the code against the original libraries, **except** `Pillow`, and it should work just fine. The libraries are still listed in the file if needed, they're just commented out. 
 
 Running the code
 ---
