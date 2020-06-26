@@ -45,6 +45,19 @@ After the last command the system will prompt you in the running container, show
    root@xxxxxxxxxxxx:/capstone/ros#
 ```
 
+**NOTE**:
+
+The first run of the `docker build` command after cloning the original Udacity repo generated the following error message on my system:
+
+```bash
+   Command "python setup.py egg_info" failed with error code 1 in /tmp/pip-build-BTDEEY/markdown/
+   You are using pip version 8.1.1, however version 20.1.1 is available.
+   You should consider upgrading via the 'pip install --upgrade pip' command.
+   The command '/bin/sh -c pip install -r requirements.txt' returned a non-zero code: 1
+```
+
+To resolve it, I updated the [`dockerfile`](./dockerfile) as explained in the message itself.
+
 ### _Native Installation_
 
 * Be sure that your workstation is running Ubuntu 16.04 Xenial Xerus or Ubuntu 14.04 Trusty Tahir. [Ubuntu downloads can be found here](https://www.ubuntu.com/download/desktop).
@@ -83,7 +96,9 @@ Then, in both cases, type:
 
 After that you can start the simulator.
 
-**NOTE**: In some cases it might be desirable to be sure that the SW running is coming from a "clean: build. To achieve that, it's needed to delete the `ros/build` and `ros/devel` folders that are generate by the `catkin_make` command. In order to simplify that process I have added to the `ros` folder a [`clean_build.sh`](./ros/clean_build.sh) script that does just that and then builds and sources the code. To use it and then run the code, from the `ros` folder just type:
+**NOTE**: 
+
+In some cases it might be desirable to be sure that the SW running is coming from a "clean: build. To achieve that, it's needed to delete the `ros/build` and `ros/devel` folders that are generate by the `catkin_make` command. In order to simplify that process I have added to the `ros` folder a [`clean_build.sh`](./ros/clean_build.sh) script that does just that and then builds and sources the code. To use it and then run the code, from the `ros` folder just type:
 
 ```bash
    source clean_build.sh
