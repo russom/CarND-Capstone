@@ -26,7 +26,8 @@ Please use **one** of the two installation options, either native **or** Docker 
 
 For both installations you might have to set up and install [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) for either Linux or Mac systems. For this you can use the scripts and follow the instructions provided in previous projects (like the [Path Planning](https://github.com/russom/CarND-P7-Path-Planning) one. 
 
-### _Docker Installation_
+Docker Installation
+---
 
 1. [Install Docker](https://docs.docker.com/engine/installation/)
 2. From the root folder of this repo, build the Docker container
@@ -47,7 +48,7 @@ After the last command the system will prompt you in the running container, show
    root@xxxxxxxxxxxx:/capstone/ros#
 ```
 
-**NOTE**:
+**NOTE** on `Dockerfile` modifications:
 
 The first run of the `docker build` command after cloning the original Udacity repo generated the following error message on my system:
 
@@ -60,7 +61,8 @@ The first run of the `docker build` command after cloning the original Udacity r
 
 To resolve it, I updated the [`dockerfile`](./Dockerfile) as explained in the message itself.
 
-### _Native Installation_
+Native Installation
+---
 
 * Be sure that your workstation is running Ubuntu 16.04 Xenial Xerus or Ubuntu 14.04 Trusty Tahir. [Ubuntu downloads can be found here](https://www.ubuntu.com/download/desktop).
 * If using a Virtual Machine to install Ubuntu, use the following configuration as minimum:
@@ -83,6 +85,31 @@ Finally, after having cloned the project repo, you would have to install the pyt
   pip install -r requirements.txt
 ```
 
+**NOTE** on `requirements.txt`
+
+The original `requirements.txt` file as found in the original Udacity repo lists all the libraries needed for the code to run both on a virtual environment as well as on the real Udacity self-driving car (Carla). However I found 2 ussues with that list:
+
+1) When creating this repo on my own, the Git [Dependabot](https://dependabot.com/) complained heavily about some of them requiring updates for security patches;
+1) In running the code built using the original file, after checking the `Camera` checkbox in the simulator I received the following error message:
+
+```bash
+   Traceback (most recent call last):
+     File "src/gevent/greenlet.py", line 766, in gevent._greenlet.Greenlet.run
+     File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 651, in _handle_event_internal
+       r = server._trigger_event(data[0], namespace, sid, *data[1:])
+     File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 680, in _trigger_event 
+       return self.handlers[namespace][event](*args)
+     File "/capstone/ros/src/styx/server.py", line 52, in image 
+       bridge.publish_camera(data)
+     File "/capstone/ros/src/styx/bridge.py", line 185, in publish_camera
+       image_message = self.bridge.cv2_to_imgmsg(image_array, encoding="rgb8")
+     File "/opt/ros/kinetic/lib/python2.7/dist-packages/cv_bridge/core.py", line 248, in cv2_to_imgmsg 
+       img_msg.height = cvim.shape[0]
+   IndexError: tuple index out of range
+   2020-06-23T17:10:31Z <Thread at 0x7f63002d0890: <bound method Server._handle_event_internal of <socketio.server.Server object at 0x7f63224e9f10>>(<socketio.server.Server object at 0x7f63224e9f10>, '1d195dbc19384fa6b14ac8c5e608525b', [u'image', {u'image': u'/9j/4AAQSkZJRgABAQAAAQABAA, '/', None)> failed with IndexError
+```
+
+
 Running the code
 ---
 
@@ -98,7 +125,7 @@ Then, in both cases, type:
 
 After that you can start the simulator.
 
-**NOTE**: 
+**NOTE** on clean build: 
 
 In some cases it might be desirable to be sure that the SW running is coming from a "clean: build. To achieve that, it's needed to delete the `ros/build` and `ros/devel` folders that are generate by the `catkin_make` command. In order to simplify that process I have added to the `ros` folder a [`clean_build.sh`](./ros/clean_build.sh) script that does just that and then builds and sources the code. To use it and then run the code, from the `ros` folder just type:
 
