@@ -90,7 +90,7 @@ Finally, after having cloned the project repo, you would have to install the pyt
 The original `requirements.txt` file as found in the original Udacity repo lists all the libraries needed for the code to run both on a virtual environment as well as on the real Udacity self-driving car (Carla). However I found 2 ussues with that list:
 
 1) When creating this repo on my own, the Git [Dependabot](https://dependabot.com/) complained heavily about some of them requiring updates for security patches;
-1) In running the code built using the original file, after checking the `Camera` checkbox in the simulator I received the following error message:
+1) In running the code built using the original file, after ticking the `Camera` checkbox in the simulator I received the following error message:
 
 ```bash
    Traceback (most recent call last):
