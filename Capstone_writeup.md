@@ -21,7 +21,7 @@ This package contains the waypoint updater node: [`waypoint_updater.py`](./ros/s
 The `/current_pose` topic provides the vehicle's current position, and `/base_waypoints` provides a complete list of waypoints the car will be following.
 
 #### [`/ros/src/twist_controller/`](./ros/src/twist_controller)
-The vehicle is equipped with a drive-by-wire (dbw) system, meaning the throttle, brake, and steering have electronic control. This package contains the files that are responsible for control of the vehicle: the node [`dbw_node.py`](./ros/src/twist_controller/dbw_node.py) and [`twist_controller.py`](./ros/src/twist_controller/twist_controller.py), along with a pid and lowpass filter used in the implementation. The `dbw_node` subscribes to the `/current_velocity` topic along with the `/twist_cmd` topic to receive target linear and angular velocities. Additionally, this node will subscribe to `/vehicle/dbw_enabled`, which indicates if the car is under dbw or driver control. This node will publish throttle, brake, and steering commands to the `/vehicle/throttle_cmd`, `/vehicle/brake_cmd`, and `/vehicle/steering_cmd` topics.
+The vehicle is equipped with a drive-by-wire (dbw) system, meaning that the throttle, brake, and steering have electronic control. This package contains the files that are responsible for control of the vehicle: the node [`dbw_node.py`](./ros/src/twist_controller/dbw_node.py) and [`twist_controller.py`](./ros/src/twist_controller/twist_controller.py), along with a pid and lowpass filter used in the implementation. The `dbw_node` subscribes to the `/current_velocity` topic along with the `/twist_cmd` topic to receive target linear and angular velocities. Additionally, this node will subscribe to `/vehicle/dbw_enabled`, which indicates if the car is under dbw or driver control. This node will publish throttle, brake, and steering commands to the `/vehicle/throttle_cmd`, `/vehicle/brake_cmd`, and `/vehicle/steering_cmd` topics.
 
 #### [`/ros/src/tl_detector/`](./ros/src/tl_detector)
 This package contains the traffic light detection node: [`tl_detector.py`](./ros/src/tl_detector/tl_detector.py). This node takes in data from the `/image_color`, `/current_pose`, and `/base_waypoints` topics and publishes the locations to stop for red traffic lights to the /traffic_waypoint topic.
@@ -32,7 +32,15 @@ This package contains the traffic light detection node: [`tl_detector.py`](./ros
 Most of the modifications made to the packages have been driven by the information provided in the Project's classroom. In the following paragraph for each of them these references will be provided, together with details on any specific adptation/modification or feature development.
 
 ### _Waypoint Updater_
-Content from Uacity's callsroom [here](https://www.youtube.com/watch?time_continue=1&v=6GIFyUzhaQo&feature=emb_logo) and [here](https://www.youtube.com/watch?v=2tDrj8KjIL4&feature=emb_logo).
+The content from Uacity's classroom can be found [here](https://www.youtube.com/watch?time_continue=1&v=6GIFyUzhaQo&feature=emb_logo) and [here](https://www.youtube.com/watch?v=2tDrj8KjIL4&feature=emb_logo).
+
+* This node publishes a list of **100** waypoints at **50** Hz. These number of waypoints has been changed with respect to what provided initially, to allow reliable execution against the charactirtics of the system used for testing.
+* Every 1/50th of second the node will:
+  * Check the closest amongst the base waypoints;
+  * Identify the farthest waypoint based on the index of the closest and the number of waypoints to publish;
+  * Verify wehther or not a stop line is located between the closest and farthest waypoint;
+  * If no stop line is in sight just publish the identifed subset of waypoints;
+  * If a stop line IS in sight, define a decelerating profile based on the distance from the stop line, and publish a list of waypoints enabling that deceleration.
 
 ### _Twist Controller_
 Content from Uacity's callsroom [here](https://www.youtube.com/watch?v=kdfXo6atphY&feature=emb_logo)
