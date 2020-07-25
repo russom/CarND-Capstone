@@ -36,7 +36,7 @@ The content from Uacity's classroom can be found [here](https://www.youtube.com/
 
 * This node publishes a list of **100** waypoints at **50** Hz. The number of waypoints has been changed with respect to what provided initially, to allow reliable execution against the charactirtics of the system used for testing.
 * Every 1/50th of second the node will:
-  * Check the closest amongst the base waypoints;
+  * Identify the closest amongst the base waypoints;
   * Identify the farthest waypoint based on the index of the closest and the number of waypoints to publish;
   * Verify wehther or not a stop line is located between the closest and farthest waypoint;
   * If no stop line is in sight just publish the identifed subset of waypoints;
