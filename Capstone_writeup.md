@@ -34,7 +34,7 @@ Most of the modifications made to the packages have been driven by the informati
 ### _Waypoint Updater_
 The content from Uacity's classroom can be found [here](https://www.youtube.com/watch?time_continue=1&v=6GIFyUzhaQo&feature=emb_logo) and [here](https://www.youtube.com/watch?v=2tDrj8KjIL4&feature=emb_logo).
 
-* This node publishes a list of **100** waypoints at **50** Hz. These number of waypoints has been changed with respect to what provided initially, to allow reliable execution against the charactirtics of the system used for testing.
+* This node publishes a list of **100** waypoints at **50** Hz. The number of waypoints has been changed with respect to what provided initially, to allow reliable execution against the charactirtics of the system used for testing.
 * Every 1/50th of second the node will:
   * Check the closest amongst the base waypoints;
   * Identify the farthest waypoint based on the index of the closest and the number of waypoints to publish;
