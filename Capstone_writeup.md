@@ -32,7 +32,7 @@ This package contains the traffic light detection node: [`tl_detector.py`](./ros
 Most of the modifications made to the packages have been driven by the information provided in the Project's classroom. In the following paragraph for each of them these references will be provided, together with details on any specific adptation/modification or feature development.
 
 ### _Waypoint Updater_
-The content from Uacity's classroom can be found [here](https://www.youtube.com/watch?time_continue=1&v=6GIFyUzhaQo&feature=emb_logo) and [here](https://www.youtube.com/watch?v=2tDrj8KjIL4&feature=emb_logo).
+The content from Udacity's classroom can be found [here](https://www.youtube.com/watch?time_continue=1&v=6GIFyUzhaQo&feature=emb_logo) and [here](https://www.youtube.com/watch?v=2tDrj8KjIL4&feature=emb_logo).
 
 * This node publishes a list of **100** waypoints at **50** Hz. The number of waypoints has been changed with respect to what provided initially, to allow reliable execution against the charactirtics of the system used for testing.
 * Every 1/50th of second the node will:
@@ -43,7 +43,7 @@ The content from Uacity's classroom can be found [here](https://www.youtube.com/
   * If a stop line IS in sight, define a decelerating profile based on the distance from the stop line, and publish a list of waypoints enabling that deceleration.
 
 ### _Twist Controller_
-The content from Uacity's classroom can be found [here](https://www.youtube.com/watch?v=kdfXo6atphY&feature=emb_logo).
+The content from Udacity's classroom can be found [here](https://www.youtube.com/watch?v=kdfXo6atphY&feature=emb_logo).
 
 * This node publishes a triad of commands in throttle, steering and brake at **50** Hz **IF** the Drive By Wire (DBW) functionality is enabled. 
   * Note that the frequency at which these commands are published shoud _not_ be changed (see also the video material).
@@ -56,4 +56,4 @@ The content from Uacity's classroom can be found [here](https://www.youtube.com/
     * Estimate whether or not some braking action is needed and calculate it based on the vehicle characteristics (mass, wheel radius).
 
 ### _Traffic Lights Detector_
-The content from Uacity's classroom can be found [here](https://www.youtube.com/watch?v=oTfArPhstQU&feature=emb_logo)
+The content from Udacity's classroom can be found [here](https://www.youtube.com/watch?v=oTfArPhstQU&feature=emb_logo)
