@@ -43,7 +43,17 @@ The content from Uacity's classroom can be found [here](https://www.youtube.com/
   * If a stop line IS in sight, define a decelerating profile based on the distance from the stop line, and publish a list of waypoints enabling that deceleration.
 
 ### _Twist Controller_
-Content from Uacity's callsroom [here](https://www.youtube.com/watch?v=kdfXo6atphY&feature=emb_logo)
+The content from Uacity's classroom can be found [here](https://www.youtube.com/watch?v=kdfXo6atphY&feature=emb_logo).
+
+* This node publishes a triad of commands in throttle, steering and brake at **50** Hz **IF** the Drive By Wire (DBW) functionality is enabled. 
+  * Note that the frequency at which these commands are published shoud _not_ be changed (see also the video material).
+* Every 1/50th of second the node will:
+  * Collect the current value for the DBW enabled state, the current velocity and the current linear and angular velocity commands;
+  * If the DBW is enabled execute the following actions:
+    * Filter the velocity through a low-pass filter;
+    * Calculate the steering command through a yaw-controller (pre-provided in the original code);
+    * Calculate the throttle using a PID loop on the velocity error;
+    * Estimate whether or not some braking action is needed and calculate it based on the vehicle characteristics (mass, wheel radius).
 
 ### _Traffic Lights Detector_
 Content from Uacity's callsroom [here](https://www.youtube.com/watch?v=oTfArPhstQU&feature=emb_logo)
