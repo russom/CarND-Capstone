@@ -56,4 +56,4 @@ The content from Uacity's classroom can be found [here](https://www.youtube.com/
     * Estimate whether or not some braking action is needed and calculate it based on the vehicle characteristics (mass, wheel radius).
 
 ### _Traffic Lights Detector_
-Content from Uacity's callsroom [here](https://www.youtube.com/watch?v=oTfArPhstQU&feature=emb_logo)
+The content from Uacity's classroom can be found [here](https://www.youtube.com/watch?v=oTfArPhstQU&feature=emb_logo)
