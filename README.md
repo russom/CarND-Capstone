@@ -11,7 +11,7 @@ The source code for this project is submitted as part of this Git repo (in the [
 
 Dependencies
 ---
-First of all, this project involves the Udacity Term 3 Simulator which can be downloaded [here](https://github.com/udacity/CarND-Capstone/releases)
+First of all, this project involves the Udacity Term 3 Simulator which can be downloaded [here](https://github.com/udacity/CarND-Capstone/releases).
 
 To run the simulator on Mac/Linux, you might have to first make the binary file executable with the following command:
 ```shell
