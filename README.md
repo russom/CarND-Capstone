@@ -20,7 +20,7 @@ sudo chmod u+x {simulator_file_name}
 
 In terms of other depednencies, they would depend on the kind of installation selected. There are, in fact, two options to run the code: through a native installation on a Linux environment or using a Docker container.
 
-Please use **one** of the two installation options, either native **or** Docker installation. Consider that most of the testing done for the code happened with th **Docker** installation.
+Please use **one** of the two installation options, either native **or** Docker installation. Consider that most of the testing done for the code happened with the **Docker** installation.
 
 **NOTE** on websocket set up: 
 
