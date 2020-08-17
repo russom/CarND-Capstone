@@ -70,7 +70,7 @@ Native Installation
   * 2 GB system memory
   * 25 GB of free hard drive space
 
-The Udacity provided virtual machine has ROS and Dataspeed DBW already installed, so you can skip the next two steps if you are using this.
+The Udacity provided workspace has ROS and Dataspeed DBW already installed, so you can skip the next two steps if you are using this.
 
 * Follow these instructions to install ROS
   * [ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu) if you have Ubuntu 16.04.
