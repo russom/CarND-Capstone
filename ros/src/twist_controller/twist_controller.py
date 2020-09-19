@@ -6,6 +6,7 @@ import rospy
 
 GAS_DENSITY = 2.858
 ONE_MPH = 0.44704
+STOP_TORQUE = 700   # Torque needed to keep the car from moving when stationary
 
 
 class Controller(object):
@@ -51,11 +52,6 @@ class Controller(object):
     def control(self, linear_vel, angular_vel, current_vel, dbw_enabled):
 
         # Return throttle, brake, steer
-
-        # rospy.loginfo("DBW enabled :{0}".format(dbw_enabled))
-        # rospy.loginfo("Angular velocity :{0}".format(angular_vel))
-        # rospy.loginfo("Target velocity :{0}".format(linear_vel))
-        # rospy.loginfo("Current velocity :{0}".format(current_vel))
         
         # In case of drive-bt-wire NOT enabled, reset PID and return 0
         if not dbw_enabled:
@@ -64,15 +60,12 @@ class Controller(object):
 
         # Otherwise, first filter velocity
         current_vel = self.vel_lpf.filt(current_vel)
-       
-        #rospy.loginfo("Current velocity (filtered) :{0}".format(current_vel))
 
         # Calculate steering
         steering = self.yaw_controller.get_steering(linear_vel, angular_vel, current_vel)
 
         # Calculate throttle
-        vel_error =  linear_vel - current_vel
-        self.last_vel = current_vel
+        vel_error = linear_vel - current_vel
 
         current_time = rospy.get_time()
         sample_time = current_time - self.last_time
@@ -86,7 +79,7 @@ class Controller(object):
         if linear_vel == 0.0 and current_vel < 0.1:
             # Vehcile stopped
             throttle = 0.0
-            brake = 700 # N*m - needed to keep the car in place
+            brake = STOP_TORQUE # N*m - needed to keep the car in place
 
         elif throttle < 0.1 and vel_error < 0.0:
             # Stop throttle and calculate brake
@@ -94,8 +87,4 @@ class Controller(object):
             decel = max(vel_error, self.decel_limit)
             brake = abs(decel)*self.vehicle_mass*self.wheel_radius
 
-        #rospy.loginfo("Throttle :{0}".format(throttle))
-        #rospy.loginfo("Brake :{0}".format(brake))
-        #rospy.loginfo("Steering :{0}".format(steering))
-        
         return throttle, brake, steering
