@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y \
     python3-pil \
     python3-lxml \
     python3-tk \
-    wget
+    wget \
+    libgl1-mesa-glx
 
 # Install gcloud and gsutil commands
 # https://cloud.google.com/sdk/docs/quickstart-debian-ubuntu
@@ -37,6 +38,9 @@ ENV PATH="/home/tensorflow/.local/bin:${PATH}"
 
 RUN python -m pip install --user -U pip
 RUN python -m pip install --user .
+#
 RUN pip install jupyterlab
+RUN pip install opencv-python
+RUN pip install tqdm
 
 ENV TF_CPP_MIN_LOG_LEVEL 3
