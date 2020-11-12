@@ -61,30 +61,6 @@ The first run of the `docker build` command after cloning the original Udacity r
 
 To resolve it, I updated the [`dockerfile`](./Dockerfile) as explained in the message itself.
 
-Native Installation
----
-
-* Be sure that your workstation is running Ubuntu 16.04 Xenial Xerus or Ubuntu 14.04 Trusty Tahir. [Ubuntu downloads can be found here](https://www.ubuntu.com/download/desktop).
-* If using a Virtual Machine to install Ubuntu, use the following configuration as minimum:
-  * 2 CPU
-  * 2 GB system memory
-  * 25 GB of free hard drive space
-
-The Udacity provided workspace has ROS and Dataspeed DBW already installed, so you can skip the next two steps if you are using this.
-
-* Follow these instructions to install ROS
-  * [ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu) if you have Ubuntu 16.04.
-  * [ROS Indigo](http://wiki.ros.org/indigo/Installation/Ubuntu) if you have Ubuntu 14.04.
-* [Dataspeed DBW](https://bitbucket.org/DataspeedInc/dbw_mkz_ros)
-  * Use this option to install the SDK on a workstation that already has ROS installed: [One Line SDK Install (binary)](https://bitbucket.org/DataspeedInc/dbw_mkz_ros/src/81e63fcc335d7b64139d7482017d6a97b405e250/ROS_SETUP.md?fileviewer=file-view-default)
-  
-Finally, after having cloned the project repo, you would have to install the python dependencies defined in [`requirements.txt`](./requirements.txt):
-
-```bash
-  cd CarND-Capstone
-  pip install -r requirements.txt
-```
-
 **NOTE** on `requirements.txt`
 
 The original `requirements.txt` file as found in the original Udacity repo lists all the libraries needed for the code to run both on a virtual environment as well as on the real Udacity self-driving car (Carla). However I found 2 ussues with that list:
@@ -111,7 +87,35 @@ The original `requirements.txt` file as found in the original Udacity repo lists
 
 Based on the experience from [another student](https://github.com/Horki/CarND-Capstone) this also seemed to be due to the version of one of the libraries (`Pillow`).
 
-As a consequence of both points, I have updated [`requirements.txt`](./requirements.txt) to load newer versions of all the libraries. **HOWEVER** I have taken care of testing the code against the original libraries, **except** `Pillow`, and it should work just fine. The libraries are still listed in the file if needed, they're just commented out. 
+As a consequence of both points, I have updated [`requirements.txt`](./requirements.txt) to load newer versions of the the libraries. The original libraries are still listed in the file if needed, they're just commented out.
+
+I have mostly used the Docker installation to test the code up to the introduction fo a classifier for the traffic lights. This task was indeed to heavy for my machine, and so I resorted to make use of a native installation, provided by Udacity through a dedicated project workspace. 
+
+Native Installation
+---
+
+* Be sure that your workstation is running Ubuntu 16.04 Xenial Xerus or Ubuntu 14.04 Trusty Tahir. [Ubuntu downloads can be found here](https://www.ubuntu.com/download/desktop).
+* If using a Virtual Machine to install Ubuntu, use the following configuration as minimum:
+  * 2 CPU
+  * 2 GB system memory
+  * 25 GB of free hard drive space
+
+The Udacity provided workspace has ROS and Dataspeed DBW already installed, so you can skip the next two steps if you are using this.
+
+* Follow these instructions to install ROS
+  * [ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu) if you have Ubuntu 16.04.
+  * [ROS Indigo](http://wiki.ros.org/indigo/Installation/Ubuntu) if you have Ubuntu 14.04.
+* [Dataspeed DBW](https://bitbucket.org/DataspeedInc/dbw_mkz_ros)
+  * Use this option to install the SDK on a workstation that already has ROS installed: [One Line SDK Install (binary)](https://bitbucket.org/DataspeedInc/dbw_mkz_ros/src/81e63fcc335d7b64139d7482017d6a97b405e250/ROS_SETUP.md?fileviewer=file-view-default)
+  
+Finally, after having cloned the project repo, you would have to install the python dependencies defined in [`requirements.txt`](./requirements.txt):
+
+```bash
+  cd CarND-Capstone
+  pip install -r requirements.txt
+```
+
+
 
 Running the code
 ---
