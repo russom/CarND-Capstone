@@ -17,7 +17,7 @@ STATE_COUNT_THRESHOLD = 3
 class TLDetector(object):
     def __init__(self):
         rospy.init_node('tl_detector')
-
+        
         self.pose = None
         self.waypoints = None
         self.waypoints_2d = None
@@ -75,7 +75,6 @@ class TLDetector(object):
             msg (Image): image from car-mounted camera
 
         """
-        rospy.loginfo("================ Image cb - image received =========================")
         self.has_image = True
         self.camera_image = msg
 
@@ -130,6 +129,9 @@ class TLDetector(object):
 
         """
 
+        # For testing, return the light state
+        # return light.state
+
         if(not self.has_image):
             self.prev_light_loc = None
             return False
@@ -141,13 +143,7 @@ class TLDetector(object):
         imagID = self.light_classifier.get_classification(cv_image)
         rospy.loginfo("Image ID :{0}".format(imagID))
 
-        # For testing, return the light state
-        return light.state
-
-
-        #
-        # #Get classification
-        # return self.light_classifier.get_classification(cv_image)
+        return imagID
 
     def process_traffic_lights(self):
         """Finds closest visible traffic light, if one exists, and determines its
@@ -181,23 +177,21 @@ class TLDetector(object):
                 # Find closest wp
                 d = tmp_wp_idx - car_wp_idx
                 if ((d >= 0) and (d < diff)):
-                    rospy.loginfo("Length waypoynts: {0}".format(diff))
-                    rospy.loginfo("Distance stop line: {0}".format(d))
                     diff = d
                     closest_light = light
                     line_wp_idx = tmp_wp_idx
 
         if closest_light:
-            rospy.loginfo("Found close light")
-            rospy.loginfo("Line_wp_idx: {0}".format(line_wp_idx))
+            # rospy.loginfo("Found close light")
+            # rospy.loginfo("Line_wp_idx: {0}".format(line_wp_idx))
             state = self.get_light_state(closest_light)
 
             if state == TrafficLight.RED:
-                rospy.loginfo("Closest light is RED")
+                # rospy.loginfo("Closest light is RED")
             elif state == TrafficLight.GREEN:
-                rospy.loginfo("Closest light is GREEN")
+                # rospy.loginfo("Closest light is GREEN")
             elif state == TrafficLight.YELLOW:
-                rospy.loginfo("Closest light is YELLOW")
+                # rospy.loginfo("Closest light is YELLOW")
 
             return line_wp_idx, state
 

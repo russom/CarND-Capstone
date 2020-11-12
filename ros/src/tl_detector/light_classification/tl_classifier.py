@@ -1,6 +1,13 @@
 from styx_msgs.msg import TrafficLight
 import rospy
+# Remove warnings from Cuda
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+#
 import tensorflow as tf
+# Remove warings from tf
+tf.get_logger().setLevel('ERROR')
+#
 import numpy as np
 from helper import load_model, process_image
 
@@ -17,6 +24,18 @@ class TLClassifier(object):
         model_path = rospy.get_param('~pb_path')
         load_model(model_path, self.detection_graph)
 
+        # "warmup" of the model with a random image
+        rospy.loginfo("Warmup")
+        with tf.Session(graph=self.detection_graph) as sess:
+            image_tensor = sess.graph.get_tensor_by_name('image_tensor:0')
+            detection_boxes = sess.graph.get_tensor_by_name('detection_boxes:0')
+            detection_scores = sess.graph.get_tensor_by_name('detection_scores:0')
+            detection_classes = sess.graph.get_tensor_by_name('detection_classes:0')
+
+            gen_image = np.uint8(np.random.randn(1, 640, 800, 3))
+            sess.run([detection_boxes, detection_scores, detection_classes], feed_dict={image_tensor: gen_image})
+        rospy.loginfo("Warmup done")
+        
     def get_classification(self, image):
         """Determines the color of the traffic light in the image
         Args:
@@ -28,7 +47,7 @@ class TLClassifier(object):
         light_class = self.predict(image)
         return light_class
 
-    def predict(self, image, min_score_thresh=0.5):
+    def predict(self, image, min_score_thresh=0.75):
         boxes, scores, classes = self.run_inference(image, self.detection_graph)
         for i, box in enumerate(boxes):
             if scores[i] > min_score_thresh:
