@@ -24,7 +24,7 @@ Please use **one** of the two installation options, either native **or** Docker 
 
 **NOTE** on websocket set up: 
 
-For both installations you might have to set up and install [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) for either Linux or Mac systems. For this you can use the scripts and follow the instructions provided in previous projects (like the [Path Planning](https://github.com/russom/CarND-P7-Path-Planning) one. 
+For both installations you might have to set up and install [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) for either Linux or Mac systems. For this you can use the scripts and follow the instructions provided in previous projects (like the [Path Planning](https://github.com/russom/CarND-P7-Path-Planning)) one. 
 
 Docker Installation
 ---
@@ -63,7 +63,7 @@ To resolve it, I updated the [`dockerfile`](./Dockerfile) as explained in the me
 
 **NOTE** on `requirements.txt`
 
-The original `requirements.txt` file as found in the original Udacity repo lists all the libraries needed for the code to run both on a virtual environment as well as on the real Udacity self-driving car (Carla). However I found 2 ussues with that list:
+The original `requirements.txt` file as found in the [original Udacity repo](https://github.com/udacity/CarND-Capstone) lists all the libraries needed for the code to run both on a virtual environment as well as on the real Udacity self-driving car (Carla). However I found 2 ussues with that list:
 
 1) When creating this repo on my own, the Git [Dependabot](https://dependabot.com/) complained heavily about some of them requiring updates for security patches;
 1) In running the code built using the original file, after ticking the `Camera` checkbox in the simulator I received the following error message:
@@ -89,10 +89,12 @@ Based on the experience from [another student](https://github.com/Horki/CarND-Ca
 
 As a consequence of both points, I have updated [`requirements.txt`](./requirements.txt) to load newer versions of the the libraries. The original libraries are still listed in the file if needed, they're just commented out.
 
-I have mostly used the Docker installation to test the code up to the introduction fo a classifier for the traffic lights. This task was indeed to heavy for my machine, and so I resorted to make use of a native installation, provided by Udacity through a dedicated project workspace. 
+I have mostly used the Docker installation to test the code up to the introduction of a classifier for the traffic lights. This task was indeed too heavy for my machine, and so I resorted to make use of a native installation, provided by Udacity through a dedicated project workspace. 
 
 Native Installation
 ---
+
+As an alternative to Docker I have used a specific *Udacity Workspace*, i.e. a fully equipped virtual environment with all the proper dependencies installed. As a guide to set up a native environment from scratch, however, the following instructions can be followed.
 
 * Be sure that your workstation is running Ubuntu 16.04 Xenial Xerus or Ubuntu 14.04 Trusty Tahir. [Ubuntu downloads can be found here](https://www.ubuntu.com/download/desktop).
 * If using a Virtual Machine to install Ubuntu, use the following configuration as minimum:
@@ -108,13 +110,33 @@ The Udacity provided workspace has ROS and Dataspeed DBW already installed, so y
 * [Dataspeed DBW](https://bitbucket.org/DataspeedInc/dbw_mkz_ros)
   * Use this option to install the SDK on a workstation that already has ROS installed: [One Line SDK Install (binary)](https://bitbucket.org/DataspeedInc/dbw_mkz_ros/src/81e63fcc335d7b64139d7482017d6a97b405e250/ROS_SETUP.md?fileviewer=file-view-default)
   
-Finally, after having cloned the project repo, you would have to install the python dependencies defined in [`requirements.txt`](./requirements.txt):
+Finally, after having cloned the project repo, you would have to install the python dependencies. For this use case, they are defined in a file I called [`requirements_ws.txt`](./requirements_ws.txt):
 
 ```bash
   cd CarND-Capstone
-  pip install -r requirements.txt
+  pip install -r requirements_ws.txt
 ```
 
+**NOTE** on `requirements_ws.txt`
+
+The [`requirements_ws.txt`](./requirements_ws.txt) is a copy of the original `requirements.txt` file as found in the [original Udacity repo](https://github.com/udacity/CarND-Capstone) EXCEPT for `tensorflow` and `numpy`that have been updated. This is a consequence of the issue I found in training and running a classifier starting from the current (at the moment I write this) TensorFlow V1 object detection API. I could not find a way to do that without updating TF to 1.15 (ideally 1.15.2). This also required the updated on `numpy`.
+
+More details are available in the [writeup](Capstone_writeup.md)
+
+
+### Other library/driver information
+Outside of `requirements_ws.txt`, here is information on other driver/library versions used in the simulator and Carla:
+
+Specific to these libraries, the simulator grader and Carla use the following:
+
+|        | Simulator | Carla  |
+| :-----------: |:-------------:| :-----:|
+| Nvidia driver | 384.130 | 384.130 |
+| CUDA | 8.0.61 | 8.0.61 |
+| cuDNN | 6.0.21 | 6.0.21 |
+| TensorRT | N/A | N/A |
+| OpenCV | 3.2.0-dev | 2.4.8 |
+| OpenMP | N/A | N/A |
 
 
 Running the code
@@ -144,36 +166,5 @@ In some cases it might be desirable to be sure that the SW running is coming fro
 ---
 
 
-
-### Real world testing
-1. Download [training bag](https://s3-us-west-1.amazonaws.com/udacity-selfdrivingcar/traffic_light_bag_file.zip) that was recorded on the Udacity self-driving car.
-2. Unzip the file
-```bash
-unzip traffic_light_bag_file.zip
-```
-3. Play the bag file
-```bash
-rosbag play -l traffic_light_bag_file/traffic_light_training.bag
-```
-4. Launch your project in site mode
-```bash
-cd CarND-Capstone/ros
-roslaunch launch/site.launch
-```
-5. Confirm that traffic light detection works on real life images
-
-### Other library/driver information
-Outside of `requirements.txt`, here is information on other driver/library versions used in the simulator and Carla:
-
-Specific to these libraries, the simulator grader and Carla use the following:
-
-|        | Simulator | Carla  |
-| :-----------: |:-------------:| :-----:|
-| Nvidia driver | 384.130 | 384.130 |
-| CUDA | 8.0.61 | 8.0.61 |
-| cuDNN | 6.0.21 | 6.0.21 |
-| TensorRT | N/A | N/A |
-| OpenCV | 3.2.0-dev | 2.4.8 |
-| OpenMP | N/A | N/A |
 
 We are working on a fix to line up the OpenCV versions between the two.
