@@ -74,7 +74,7 @@ A video showing the behaviour of the code at this stage can be seen in the follo
 ### Training of a Classifier
 Once arrived at this stage, the next step is the training of a classifier capable of recognizing the state of a traffic light when the vehicle is close to it. 
 
-In order to do so I have firstly gone through a [lab]((https://github.com/udacity/CarND-Object-Detection-Lab)) provided by Udacity to practice on the subjected. I have then decided to extend the lab itself to document my work and its results: my updated version can be found [here](https://github.com/russom/CarND-Object-Detection-Lab).
+In order to do so I have firstly gone through a [lab](https://github.com/udacity/CarND-Object-Detection-Lab) provided by Udacity to practice on the subject. I have then decided to extend the lab itself to document my work and its results: my updated version can be found [here](https://github.com/russom/CarND-Object-Detection-Lab).
 
 Summarizing, I obtained a model based on the SSD Mobilnet one availble in the [TensorFlow 1 Object Detection Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf1_detection_zoo.md), capable of classifying traffic lights in the Green/Red/Yellow classes. In order to do so I created a specific image dataset and followed the instruction available in the  [Object Detection API with TF1 Git Repo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf1.md) and in this series of [Blog posts](https://medium.com/@WuStangDan/step-by-step-tensorflow-object-detection-api-tutorial-part-1-selecting-a-model-a02b6aabe39e). 
 
