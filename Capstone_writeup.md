@@ -76,7 +76,16 @@ Once arrived at this stage, the next step is the training of a classifier capabl
 
 In order to do so I have firstly gone through a [lab](https://github.com/udacity/CarND-Object-Detection-Lab) provided by Udacity to practice on the subject. I have then decided to extend the lab itself to document my work and its results: my updated version can be found [here](https://github.com/russom/CarND-Object-Detection-Lab).
 
-Summarizing, I obtained a model based on the SSD Mobilnet one availble in the [TensorFlow 1 Object Detection Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf1_detection_zoo.md), capable of classifying traffic lights in the Green/Red/Yellow classes. In order to do so I created a specific image dataset and followed the instruction available in the  [Object Detection API with TF1 Git Repo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf1.md) and in this series of [Blog posts](https://medium.com/@WuStangDan/step-by-step-tensorflow-object-detection-api-tutorial-part-1-selecting-a-model-a02b6aabe39e). 
+Summarizing, I obtained a model based on the SSD Mobilnet one availble in the [TensorFlow 1 Object Detection Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf1_detection_zoo.md), capable of classifying traffic lights in the Green/Red/Yellow classes. In order to do so I created a specific image dataset and followed the instruction available in the  [Object Detection API with TF1 Git Repo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf1.md) and in this series of [Blog posts](https://medium.com/@WuStangDan/step-by-step-tensorflow-object-detection-api-tutorial-part-1-selecting-a-model-a02b6aabe39e). The results of the training where pretty satisfactory.
+
+**However**, there is a significant issue with the final result, related to the fact that I could NOT manage to set up a training environment compatible with the Udacity running one.
+
+The fundamental problem is that the Udacity target environment makes reference to some libraries that are not supported anymore (see also the notes in the [README](README.md) about the various `requirements` files). More specifically, the Udacity environment targets ***TF 1.3***, while the V1 API available at the moment I'm writing this (mid-November 2020) makes use of ***TF 1.15.2***.
+I tried several options, inlcuding running the [training scripts](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf1_training_and_evaluation.md) from the Udacity workspace, but all of them failed either because of the version of Tensor Flow (which would make the syntax of the scripts incompatible) or because of the version of Python (which would prevent them from running at all).
+
+The main consequence of this is that the model _can_ run in the Udacity environment but _cannot_ find the right version of the CUDA libraries to make use of the GPU (the 1.15 training environment leverages CUDA 10 while the 1.3 target environment uses CUDA 8). As a consequence, the model resorts to use the CPU, which creates perfomances' issues.
+
+
 
 
 
