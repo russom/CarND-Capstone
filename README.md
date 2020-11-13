@@ -118,7 +118,7 @@ Ater having cloned the project repo, you would have to install the python depend
 
 **NOTE** on `requirements_ws.txt`
 
-The [`requirements_ws.txt`](./requirements_ws.txt) is a copy of the original `requirements.txt` file as found in the [original Udacity repo](https://github.com/udacity/CarND-Capstone) EXCEPT for `tensorflow` and `numpy`that have been updated. This is a consequence of the issue I found in training and running a classifier starting from the current (at the moment I write this) TensorFlow V1 object detection API. I could not find a way to do that without updating TF to 1.15 (ideally 1.15.2). This also required the updated on `numpy`.
+The [`requirements_ws.txt`](./requirements_ws.txt) is a copy of the original `requirements.txt` file as found in the [original Udacity repo](https://github.com/udacity/CarND-Capstone) EXCEPT for `tensorflow` and `numpy`that have been updated. This is a consequence of the issue I found in training and running a classifier starting from the current (at the moment I write this) [TensorFlow V1 object detection API](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf1.md). I could not find a way to do that without updating TF to 1.15 (ideally 1.15.2). This also required the update of `numpy`.
 
 More details are available in the [writeup](Capstone_writeup.md)
 
