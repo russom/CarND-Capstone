@@ -80,14 +80,21 @@ Summarizing, I obtained a model based on the SSD Mobilnet one availble in the [T
 
 **However**, there is a significant issue with the final result, related to the fact that I could NOT manage to set up a training environment compatible with the Udacity running one.
 
-The fundamental problem is that the Udacity target environment makes reference to some libraries that are not supported anymore (see also the notes in the [README](README.md) about the various `requirements` files). More specifically, the Udacity environment targets ***TF 1.3***, while the V1 API available at the moment I'm writing this (mid-November 2020) makes use of ***TF 1.15.2***.
+The fundamental problem is that the Udacity target environment makes reference to some libraries that are not supported anymore (see also the notes in the [`README`](README.md) about the various `requirements` files). More specifically, the Udacity environment targets ***TF 1.3***, while the V1 API available at the moment I'm writing this (mid-November 2020) makes use of ***TF 1.15.2***.
 I tried several options, inlcuding running the [training scripts](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf1_training_and_evaluation.md) from the Udacity workspace, but all of them failed either because of the version of Tensor Flow (which would make the syntax of the scripts incompatible) or because of the version of Python (which would prevent them from running at all).
 
 The main consequences of this are:
-* The model _cannot_ run in the Udacity environment as is: as explained in the [README](README.md) an updated version of the `requirements` file has to be used to update TensorFlow;
+* The model _cannot_ run in the Udacity environment as is: as explained in the [`README`](README.md) an updated version of the `requirements` file has to be used to update TensorFlow;
 * Even with the environment updated as such, the model _cannot_ find the right version of the CUDA libraries to make use of the GPU (the 1.15 training environment leverages CUDA 10 while the 1.3 target environment uses CUDA 8). As a consequence, the model resorts to use the CPU, which creates perfomances' issues.
 
+### _Traffic Lights Detector_ (Classifier included)
+The model used for classification can be found in the [`data/fine_tuned_model`](./data/fine_tuned_model) folder. In there I saved (for the sake of completeness) all the output of the export script provided with the TF API: the actual file used for the clasiification is `frozen_inference_graph.pb`.
 
+The TL detector node was modified mosltly in the `get_light_state()` function, that in turns makes use of files stored in the [`light_classification`](./ros/src/tl_detector/light_classification) folder. Specifically
 
+* [`tl_classifier.py`](./ros/src/tl_detector/light_classification/tl_classifier.py) defines the `TLClassifier` class, which hosts methods to process images;
+* [`helpers.py`](./ros/src/tl_detector/light_classification/helpers.py] contains a couple of helper functions to load the model or convert the color scheme of the images.
+
+Most of these functions are refactoring of instructions that can be found in the [Jupyter notebook](https://github.com/russom/CarND-Object-Detection-Lab/blob/master/CarND-Object-Detection-Lab.ipynb) that is part of the Object Detection lab; the layout itself is the same of the one proposed by [this](https://github.com/Horki/CarND-Capstone) previous project.
 
 
