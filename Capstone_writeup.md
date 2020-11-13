@@ -83,7 +83,9 @@ Summarizing, I obtained a model based on the SSD Mobilnet one availble in the [T
 The fundamental problem is that the Udacity target environment makes reference to some libraries that are not supported anymore (see also the notes in the [README](README.md) about the various `requirements` files). More specifically, the Udacity environment targets ***TF 1.3***, while the V1 API available at the moment I'm writing this (mid-November 2020) makes use of ***TF 1.15.2***.
 I tried several options, inlcuding running the [training scripts](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf1_training_and_evaluation.md) from the Udacity workspace, but all of them failed either because of the version of Tensor Flow (which would make the syntax of the scripts incompatible) or because of the version of Python (which would prevent them from running at all).
 
-The main consequence of this is that the model _can_ run in the Udacity environment but _cannot_ find the right version of the CUDA libraries to make use of the GPU (the 1.15 training environment leverages CUDA 10 while the 1.3 target environment uses CUDA 8). As a consequence, the model resorts to use the CPU, which creates perfomances' issues.
+The main consequences of this are:
+* The model _cannot_ run in the Udacity environment as is: as explained in the [README](README.md) an updated version of the `requirements` file has to be used to update TensorFlow;
+* Even with the environment updated as such, the model _cannot_ find the right version of the CUDA libraries to make use of the GPU (the 1.15 training environment leverages CUDA 10 while the 1.3 target environment uses CUDA 8). As a consequence, the model resorts to use the CPU, which creates perfomances' issues.
 
 
 
