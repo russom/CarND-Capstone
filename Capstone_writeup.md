@@ -72,7 +72,7 @@ A video showing the behaviour of the code at this stage can be seen in the follo
 [![Capstone No Class](http://img.youtube.com/vi/uvXvaQE95Zo/0.jpg)](https://youtu.be/uvXvaQE95Zo "Capstone No Class")
 
 ### Training of a Classifier
-The next step at this stage is the training of a classifier capable of recognizing the state of a traffic lights when close to it. 
+Once arrived at this stage, the next step is the training of a classifier capable of recognizing the state of a traffic light when the vehicle is close to it. 
 
 In order to do so I have firstly gone through a [lab]((https://github.com/udacity/CarND-Object-Detection-Lab)) provided by Udacity to practice on the subjected. I have then decided to extend the lab itself to document my work and its results: my updated version can be found [here](https://github.com/russom/CarND-Object-Detection-Lab).
 
