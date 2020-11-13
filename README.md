@@ -20,15 +20,13 @@ To run the simulator on Mac/Linux, you might have to first make the binary file 
 sudo chmod u+x {simulator_file_name}
 ```
 
-In terms of other depednencies, they would depend on the kind of installation selected. There are, in fact, two options to run the code: through a native installation on a Linux environment or using a Docker container.
+In terms of other dependencies, they would depend on the kind of installation selected. There are, in fact, two options to run the code: through a native installation on a Linux environment or using a Docker container.
 
 Please use **one** of the two installation options, either native **or** Docker installation. Consider that most of the testing done for the code happened with the **Docker** installation.
 
 **NOTE** on websocket set up: 
 
 For both installations you might have to set up and install [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) for either Linux or Mac systems. For this you can use the scripts and follow the instructions provided in previous projects (like the [Path Planning](https://github.com/russom/CarND-P7-Path-Planning)) one. 
-
----
 
 Docker Installation
 ---
