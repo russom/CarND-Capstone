@@ -94,23 +94,20 @@ I have mostly used the Docker installation to test the code up to the introducti
 Native Installation
 ---
 
-As an alternative to Docker I have used a specific *Udacity Workspace*, i.e. a fully equipped virtual environment with all the proper dependencies installed. As a guide to set up a native environment from scratch, however, the following instructions can be followed.
+As an alternative to Docker I have used a specific ***Udacity Workspace***, i.e. a fully equipped virtual environment with all the proper dependencies installed. As a guide to set up a native environment from scratch, however, the following instructions can be followed.
 
 * Be sure that your workstation is running Ubuntu 16.04 Xenial Xerus or Ubuntu 14.04 Trusty Tahir. [Ubuntu downloads can be found here](https://www.ubuntu.com/download/desktop).
 * If using a Virtual Machine to install Ubuntu, use the following configuration as minimum:
   * 2 CPU
   * 2 GB system memory
   * 25 GB of free hard drive space
-
-The Udacity provided workspace has ROS and Dataspeed DBW already installed, so you can skip the next two steps if you are using this.
-
 * Follow these instructions to install ROS
   * [ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu) if you have Ubuntu 16.04.
   * [ROS Indigo](http://wiki.ros.org/indigo/Installation/Ubuntu) if you have Ubuntu 14.04.
 * [Dataspeed DBW](https://bitbucket.org/DataspeedInc/dbw_mkz_ros)
   * Use this option to install the SDK on a workstation that already has ROS installed: [One Line SDK Install (binary)](https://bitbucket.org/DataspeedInc/dbw_mkz_ros/src/81e63fcc335d7b64139d7482017d6a97b405e250/ROS_SETUP.md?fileviewer=file-view-default)
   
-Finally, after having cloned the project repo, you would have to install the python dependencies. For this use case, they are defined in a file I called [`requirements_ws.txt`](./requirements_ws.txt):
+Ater having cloned the project repo, you would have to install the python dependencies. For this use case, they are defined in a file I called [`requirements_ws.txt`](./requirements_ws.txt):
 
 ```bash
   cd CarND-Capstone
