@@ -93,7 +93,7 @@ The model used for classification can be found in the [`data/fine_tuned_model`](
 The TL detector node was modified mosltly in the `get_light_state()` function, that in turns makes use of files stored in the [`light_classification`](./ros/src/tl_detector/light_classification) folder. Specifically
 
 * [`tl_classifier.py`](./ros/src/tl_detector/light_classification/tl_classifier.py) defines the `TLClassifier` class, which hosts methods to process images;
-* [`helpers.py`](./ros/src/tl_detector/light_classification/helpers.py] contains a couple of helper functions to load the model or convert the color scheme of the images.
+* [`helpers.py`](./ros/src/tl_detector/light_classification/helpers.py) contains a couple of helper functions to load the model or convert the color scheme of the images.
 
 Most of these functions are refactoring of instructions that can be found in the [Jupyter notebook](https://github.com/russom/CarND-Object-Detection-Lab/blob/master/CarND-Object-Detection-Lab.ipynb) that is part of the Object Detection lab; the layout itself is the same of the one proposed by [this](https://github.com/Horki/CarND-Capstone) previous project.
 
