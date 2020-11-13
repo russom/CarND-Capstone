@@ -9,6 +9,8 @@ For it the goal is to write code implementing ROS nodes for a SW responsible to 
 
 The source code for this project is submitted as part of this Git repo (in the [`ros/src`](/ros/src) folder). A detailed explanation is provided in a separate [writeup](Capstone_writeup.md), that documents also the results obtained.  
 
+---
+
 Dependencies
 ---
 First of all, this project involves the Udacity Term 3 Simulator which can be downloaded [here](https://github.com/udacity/CarND-Capstone/releases).
@@ -25,6 +27,8 @@ Please use **one** of the two installation options, either native **or** Docker 
 **NOTE** on websocket set up: 
 
 For both installations you might have to set up and install [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) for either Linux or Mac systems. For this you can use the scripts and follow the instructions provided in previous projects (like the [Path Planning](https://github.com/russom/CarND-P7-Path-Planning)) one. 
+
+---
 
 Docker Installation
 ---
@@ -94,7 +98,7 @@ I have mostly used the Docker installation to test the code up to the introducti
 Native Installation
 ---
 
-As an alternative to Docker I have used a specific ***Udacity Workspace***, i.e. a fully equipped virtual environment with all the proper dependencies installed. As a guide to set up a native environment from scratch, however, the following instructions can be followed.
+As an alternative to Docker I have used a specific ***Udacity Workspace***, i.e. a fully equipped virtual environment with all the proper dependencies installed. As a guide to set up a native environment from scratch, however, the following instructions can be followed:
 
 * Be sure that your workstation is running Ubuntu 16.04 Xenial Xerus or Ubuntu 14.04 Trusty Tahir. [Ubuntu downloads can be found here](https://www.ubuntu.com/download/desktop).
 * If using a Virtual Machine to install Ubuntu, use the following configuration as minimum:
@@ -120,7 +124,6 @@ The [`requirements_ws.txt`](./requirements_ws.txt) is a copy of the original `re
 
 More details are available in the [writeup](Capstone_writeup.md)
 
-
 ### Other library/driver information
 Outside of `requirements_ws.txt`, here is information on other driver/library versions used in the simulator and Carla:
 
@@ -135,6 +138,7 @@ Specific to these libraries, the simulator grader and Carla use the following:
 | OpenCV | 3.2.0-dev | 2.4.8 |
 | OpenMP | N/A | N/A |
 
+---
 
 Running the code
 ---
@@ -159,9 +163,3 @@ In some cases it might be desirable to be sure that the SW running is coming fro
    source clean_build.sh
    roslaunch launch/styx.launch
 ```
-
----
-
-
-
-We are working on a fix to line up the OpenCV versions between the two.
