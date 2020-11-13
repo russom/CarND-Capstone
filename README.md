@@ -141,7 +141,7 @@ Specific to these libraries, the simulator grader and Carla use the following:
 Running the code
 ---
 
-Whether you are using the Docker or native installation, you can run the code issuing the same commands. In case of native installation, however, first of all you will have to move to the `ros` folder (are see before the Docker one prompts you there directly). 
+Whether you are using the Docker or native installation, you can run the code issuing the same commands. In case of native installation, however, first of all you will have to move to the `ros` folder (as seen before the Docker one prompts you there directly). 
 
 Then, in both cases, type:
 
