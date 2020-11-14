@@ -85,7 +85,7 @@ I tried several options, inlcuding running the [training scripts](https://github
 
 The main consequences of this are:
 * The model _cannot_ run in the Udacity environment as is: as explained in the [`README`](README.md) an updated version of the `requirements` file has to be used to update TensorFlow;
-* Even with the environment updated as such, the model _cannot_ find the right version of the CUDA libraries to make use of the GPU (the 1.15 training environment leverages CUDA 10 while the 1.3 target environment uses CUDA 8). As a consequence, the model resorts to use the CPU, which creates perfomances' issues. An example of the CUDA message thrown is:
+* Even with the environment updated as such, the model _cannot_ find the right version of the CUDA libraries to make use of the GPU (the 1.15 training environment leverages CUDA 10 while the 1.3 target environment uses CUDA 8). As a consequence, the model resorts to use the CPU, which creates perfomances' issues. An example of the CUDA messages thrown is:
 
 ```
    2020-11-11 09:15:39.459606: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:983] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
