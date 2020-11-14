@@ -122,7 +122,7 @@ These tests have been collecting driving the vehcile manually along the simulato
 Few more notes:
 
 * In order to limit the impact of everytrhing else other than the classifier, in the tests shown in the video I have further reduced the number of waypoints defining the horizon for both the Waypoint Updater and the Traffic Lights Detector nodes: I put both of them = 25.
-* I have added few lines (3:9) in the `import` section of [`tl_classifier.py`](./ros/src/tl_detector/light_classification/tl_classifier.py). They prevent the deprecation and CUDA warnings to be shown on the screen to avoid polluting the shell, but they can be commented out if needed. The lines are:
+* I have added few lines [3:9] in the `import` section of [`tl_classifier.py`](./ros/src/tl_detector/light_classification/tl_classifier.py). They prevent the deprecation and CUDA warnings to be shown on the screen to avoid polluting the shell, but they can be commented out if needed. The lines are:
 
 ```
    # Remove warnings from Cuda
@@ -137,5 +137,8 @@ Few more notes:
 ---
 ## Conclusions
 
+* The code provided in this repo allowed the driving of a vehicle in the Udacity Capstone Project simulator, defining and following a set of waypoints and implementing a strategy to decelerate and stop at red traffic lights.
+* A classifier based on the SSD Mobilenet model was built, capable of succesfully identifying the state of a traffic light (as Red/Green/Yellow) based on an acquired image. Open-loop tests on reference images are satisfactory.
+* Unfortunately, it was not possible for me to succesfully include the classifier as part of the running code, to execute the classification in closed loop, while the vehicle is driving. This was due to the unavailability of a training environment compatible with the target execution one. 
 
 
