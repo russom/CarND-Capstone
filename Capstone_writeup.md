@@ -85,7 +85,23 @@ I tried several options, inlcuding running the [training scripts](https://github
 
 The main consequences of this are:
 * The model _cannot_ run in the Udacity environment as is: as explained in the [`README`](README.md) an updated version of the `requirements` file has to be used to update TensorFlow;
-* Even with the environment updated as such, the model _cannot_ find the right version of the CUDA libraries to make use of the GPU (the 1.15 training environment leverages CUDA 10 while the 1.3 target environment uses CUDA 8). As a consequence, the model resorts to use the CPU, which creates perfomances' issues.
+* Even with the environment updated as such, the model _cannot_ find the right version of the CUDA libraries to make use of the GPU (the 1.15 training environment leverages CUDA 10 while the 1.3 target environment uses CUDA 8). As a consequence, the model resorts to use the CPU, which creates perfomances' issues. An example of the CUDA message thrown is:
+
+```
+   2020-11-11 09:15:39.459606: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:983] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+   2020-11-11 09:15:39.460614: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:04.0
+   2020-11-11 09:15:39.460996: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcudart.so.10.0'; dlerror: libcudart.so.10.0: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /home/workspace/CarND-Capstone/ros/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu:/opt/carndcapstone/cuda-8.0/extras/CUPTI/lib64/:/opt/carndcapstone/cuda-8.0/lib64/
+   2020-11-11 09:15:39.461231: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcublas.so.10.0'; dlerror: libcublas.so.10.0: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /home/workspace/CarND-Capstone/ros/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu:/opt/carndcapstone/cuda-8.0/extras/CUPTI/lib64/:/opt/carndcapstone/cuda-8.0/lib64/
+   2020-11-11 09:15:39.461700: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcufft.so.10.0'; dlerror: libcufft.so.10.0: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /home/workspace/CarND-Capstone/ros/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu:/opt/carndcapstone/cuda-8.0/extras/CUPTI/lib64/:/opt/carndcapstone/cuda-8.0/lib64/
+   2020-11-11 09:15:39.461964: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcurand.so.10.0'; dlerror: libcurand.so.10.0: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /home/workspace/CarND-Capstone/ros/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu:/opt/carndcapstone/cuda-8.0/extras/CUPTI/lib64/:/opt/carndcapstone/cuda-8.0/lib64/
+   2020-11-11 09:15:39.462339: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcusolver.so.10.0'; dlerror: libcusolver.so.10.0: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /home/workspace/CarND-Capstone/ros/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu:/opt/carndcapstone/cuda-8.0/extras/CUPTI/lib64/:/opt/carndcapstone/cuda-8.0/lib64/
+   2020-11-11 09:15:39.462585: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcusparse.so.10.0'; dlerror: libcusparse.so.10.0: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /home/workspace/CarND-Capstone/ros/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu:/opt/carndcapstone/cuda-8.0/extras/CUPTI/lib64/:/opt/carndcapstone/cuda-8.0/lib64/
+   2020-11-11 09:15:39.462924: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcudnn.so.7'; dlerror: libcudnn.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /home/workspace/CarND-Capstone/ros/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu:/opt/carndcapstone/cuda-8.0/extras/CUPTI/lib64/:/opt/carndcapstone/cuda-8.0/lib64/
+   2020-11-11 09:15:39.462999: W tensorflow/core/common_runtime/gpu/gpu_device.cc:1641] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+```
 
 ### _Traffic Lights Detector_ (Classifier included)
 The model used for classification can be found in the [`data/fine_tuned_model`](./data/fine_tuned_model) folder. In there I saved (for the sake of completeness) all the output of the export script provided with the TF API: the actual file used for the clasiification is `frozen_inference_graph.pb`.
@@ -96,5 +112,30 @@ The TL detector node was modified mosltly in the `get_light_state()` function, t
 * [`helpers.py`](./ros/src/tl_detector/light_classification/helpers.py) contains a couple of helper functions to load the model or convert the color scheme of the images.
 
 Most of these functions are refactoring of instructions that can be found in the [Jupyter notebook](https://github.com/russom/CarND-Object-Detection-Lab/blob/master/CarND-Object-Detection-Lab.ipynb) that is part of the Object Detection lab; the layout itself is the same of the one proposed by [this](https://github.com/Horki/CarND-Capstone) previous project.
+
+I have collected some examples of the classifier running in the code against the simulator in the Udacity workspace in this video:
+
+[![Classifier Tests](http://img.youtube.com/vi/J1qMqC8sMXg/0.jpg)](https://youtu.be/J1qMqC8sMXg "Capstone No Class")
+
+These tests have been collecting driving the vehcile manually along the simulator track and enabling the camera when close to a traffic lights. It can be immediately noticed how the classifier is capable of identifying the lights properly, but it takes too long to do that to allow a closed loop implementation. The main reason that I could find for this is the one mentioned in the previos paragraph: the model cannot run against the GPU and the CPU cannot provide the capabilities needed.
+
+Few more notes:
+
+* In order to limit the impact of everytrhing else other than the classifier, in the tests shown in the video I have further reduced the number of waypoints defining the horizon for both the Waypoint Updater and the Traffic Lights Detector nodes: I put both of them = 25.
+* I have added few lines (3:9) in the `import` section of [`tl_classifier.py`](./ros/src/tl_detector/light_classification/tl_classifier.py). They prevent the deprecation and CUDA warnings to be shown on the screen to avoid polluting the shell, but they can be commented out if needed. The lines are:
+
+```
+   # Remove warnings from Cuda
+   import os
+   os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
+   #
+   import tensorflow as tf
+   # Remove warings from tf
+   tf.get_logger().setLevel('ERROR')
+```
+
+---
+## Conclusions
+
 
 
