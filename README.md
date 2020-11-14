@@ -96,7 +96,7 @@ I have mostly used the Docker installation to test the code up to the introducti
 Native Installation
 ---
 
-As an alternative to Docker I have used a specific ***Udacity Workspace***, i.e. a fully equipped virtual environment with all the proper dependencies installed. As a guide to set up a native environment from scratch, however, the following instructions can be followed:
+As an alternative to Docker I have used a specific ***Udacity Workspace***, i.e. a fully equipped virtual environment with all the proper dependencies installed, capable to run aginst a GPU. As a guide to set up a native environment from scratch, however, the following instructions can be followed:
 
 * Be sure that your workstation is running Ubuntu 16.04 Xenial Xerus or Ubuntu 14.04 Trusty Tahir. [Ubuntu downloads can be found here](https://www.ubuntu.com/download/desktop).
 * If using a Virtual Machine to install Ubuntu, use the following configuration as minimum:
