@@ -137,7 +137,7 @@ Few more notes:
 ---
 ## Conclusions
 
-* The code provided in this repo allowed the driving of a vehicle in the Udacity Capstone Project simulator, defining and following a set of waypoints and implementing a strategy to decelerate and stop at red traffic lights.
+* The code provided in this repo was capable of driving a vehicle in the Udacity Capstone Project simulator, defining and following a set of waypoints and implementing a strategy to decelerate and stop at red traffic lights, in the case in which the state of the light (Red/Green/Yellow) is provided by the simulator itself.
 * A classifier based on the SSD Mobilenet model was built, capable of succesfully identifying the state of a traffic light (as Red/Green/Yellow) based on an acquired image. Open-loop tests on reference images are satisfactory.
 * Unfortunately, it was not possible for me to succesfully include the classifier as part of the running code, to execute the classification in closed loop, while the vehicle is driving. This was due to the unavailability of a training environment compatible with the target execution one. 
 
