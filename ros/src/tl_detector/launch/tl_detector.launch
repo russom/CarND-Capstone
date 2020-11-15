@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
     <node pkg="tl_detector" type="tl_detector.py" name="tl_detector" output="screen" cwd="node">
-        <param name="pb_path" value="$(find styx)../../../data/fine_tuned_model/frozen_inference_graph.pb" />
+        <param name="pb_path" value="$(find styx)../../../data/ssd_mobilenet_2018_fine_tuned_model/frozen_inference_graph.pb" />
     </node>
 </launch>

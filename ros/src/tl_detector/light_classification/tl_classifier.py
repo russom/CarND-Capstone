@@ -23,18 +23,18 @@ class TLClassifier(object):
         self.detection_graph = tf.Graph()
         model_path = rospy.get_param('~pb_path')
         load_model(model_path, self.detection_graph)
-
-        # "warmup" of the model with a random image
-        rospy.loginfo("Warmup")
+        # Model warmup - run a dummy classification against a random image
+        rospy.loginfo("Model warmup starting")
         with tf.Session(graph=self.detection_graph) as sess:
             image_tensor = sess.graph.get_tensor_by_name('image_tensor:0')
             detection_boxes = sess.graph.get_tensor_by_name('detection_boxes:0')
             detection_scores = sess.graph.get_tensor_by_name('detection_scores:0')
             detection_classes = sess.graph.get_tensor_by_name('detection_classes:0')
-
-            gen_image = np.uint8(np.random.randn(1, 640, 800, 3))
+            #
+            gen_image = np.uint8(np.random.randn(1, 600, 800, 3))
             sess.run([detection_boxes, detection_scores, detection_classes], feed_dict={image_tensor: gen_image})
-        rospy.loginfo("Warmup done")
+            #
+        rospy.loginfo("Model warmup done")
         
     def get_classification(self, image):
         """Determines the color of the traffic light in the image
@@ -58,17 +58,15 @@ class TLClassifier(object):
 
     def run_inference(self, image, graph):
         with graph.as_default():
-            cfg = tf.ConfigProto()
-            cfg.graph_options.optimizer_options.global_jit_level = tf.OptimizerOptions.ON_1
-            with tf.Session(graph=self.detection_graph, config=cfg) as sess:
+            with tf.Session(graph=self.detection_graph) as sess:
                 image_tensor = tf.get_default_graph().get_tensor_by_name('image_tensor:0')
                 detection_boxes = tf.get_default_graph().get_tensor_by_name('detection_boxes:0')
                 detection_scores = tf.get_default_graph().get_tensor_by_name('detection_scores:0')
                 detection_classes = tf.get_default_graph().get_tensor_by_name('detection_classes:0')
-
+                #
                 (boxes, scores, classes) = sess.run([detection_boxes, detection_scores, detection_classes],
                                                     feed_dict={image_tensor: np.expand_dims(image, axis=0)})
-
+                #
                 scores = np.squeeze(scores)
                 classes = np.squeeze(classes)
                 boxes = np.squeeze(boxes)
