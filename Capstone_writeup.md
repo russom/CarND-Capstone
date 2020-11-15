@@ -106,7 +106,7 @@ Skipping registering GPU devices...
 ### _Traffic Lights Detector_ (Classifier included)
 The model used for classification can be found in the [`data/ssd_mobilenet_2018_fine_tuned_model`](./data/ssd_mobilenet_2018_fine_tuned_model) folder. In there I saved (for the sake of completeness) all the output of the export script provided with the TF API: the actual file used for the clasiification is `frozen_inference_graph.pb`.
 
-The [TL detector node](./ros/src/tl_detector/tl_detector.py) was modified mosltly in the `get_light_state()` function (starting at line 121), that in turns makes use of files stored in the [`light_classification`](./ros/src/tl_detector/light_classification) folder. Specifically
+The TL detector [node](./ros/src/tl_detector/tl_detector.py) was modified mosltly in the `get_light_state()` function (starting at line 121), that in turns makes use of files stored in the [`light_classification`](./ros/src/tl_detector/light_classification) folder. Specifically
 
 * [`tl_classifier.py`](./ros/src/tl_detector/light_classification/tl_classifier.py) defines the `TLClassifier` class, which hosts methods to process images;
 * [`helpers.py`](./ros/src/tl_detector/light_classification/helpers.py) contains a couple of helper functions to load the model or convert the color scheme of the images.
