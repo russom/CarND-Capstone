@@ -8,7 +8,7 @@ ujson==1.35
 wsaccel==0.6.2
 
 # UPDATED:
-numpy==1.16.0
+numpy==1.22.0
 Pillow==6.2.2
 scipy==1.2.2
 six>=1.12.0
