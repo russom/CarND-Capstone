@@ -4,7 +4,7 @@ gevent==1.4.0
 gevent-websocket==0.10.1
 h5py==2.6.0
 python-socketio==4.4.0
-ujson==1.35
+ujson==5.4.0
 wsaccel==0.6.2
 
 # UPDATED:
